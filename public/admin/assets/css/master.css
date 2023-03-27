@@ -1,0 +1,85 @@
+body {
+    background-color: #eef2ff !important;
+    overflow-x: hidden !important;
+}
+
+.bg-theme {
+    background-color: #10a19d !important;
+}
+
+.text-theme {
+    color: #00abb3 !important;
+}
+
+.dark-theme {
+    background-color: #444444;
+    color: white !important;
+}
+
+.card-hover:hover {
+    box-shadow: 0px 5px 40px rgba(29, 34, 47, 0.15) !important;
+}
+
+.btn-theme {
+    background-color: #00abb3 !important;
+    color: white !important;
+    border: white 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-theme:hover {
+    background-color: white !important;
+    color: #00abb3 !important;
+    border: #00abb3 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-theme-two {
+    background-color: #2b4865 !important;
+    color: white !important;
+    border: white 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.btn-theme-two:hover {
+    background-color: white !important;
+    color: #2b4865 !important;
+    border: #2b4865 2px solid !important;
+    border-radius: 6px !important;
+}
+
+.bg-heart {
+    background-color: #fc4f4f !important;
+}
+
+.pre-content {
+    background-color: #2b4865 !important;
+    color: white !important;
+}
+
+.td-center {
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.limit-text-title {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 1 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.limit-text {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text-limit {
+    display: inline-block;
+    width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
