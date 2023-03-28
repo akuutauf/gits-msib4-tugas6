@@ -13,6 +13,14 @@
         href="{{ asset('admin/assets/vendor/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}" />
 @endsection
 
+@php
+    function priceConversion($price)
+    {
+        $formattedPrice = number_format($price, 0, ',', '.');
+        return $formattedPrice;
+    }
+@endphp
+
 @section('content')
     <!-- Header -->
     <div class="header pb-6">
@@ -77,10 +85,11 @@
                                                         title="{{ $item->name }}">{{ $item->name }}</span>
                                                 </td>
                                                 <td class="td-center" title="{{ $item->name }}"><img
-                                                        src="{{ $item->foto }}" class="img-fluid rounded" alt="">
+                                                        src="{{ Storage::url($item->foto) }}" class="img-fluid rounded"
+                                                        alt="">
                                                 </td>
                                                 <td class="td-center">{{ $item->category->name }}</td>
-                                                <td class="td-center">Rp. {{ $item->price }}</td>
+                                                <td class="td-center">Rp. {{ priceConversion($item->price) }}</td>
                                                 <td class="td-center">{{ $item->stock }}</td>
                                                 <td class="td-center">{{ $item->status }}</td>
                                                 <td class="td-center">
@@ -108,8 +117,8 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <b>"{{ $item->name }}"</b>
-                                                            <img src="{{ $item->foto }}" class="img-fluid rounded mt-2"
-                                                                alt="">
+                                                            <img src="{{ Storage::url($item->foto) }}"
+                                                                class="img-fluid rounded mt-2" alt="">
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

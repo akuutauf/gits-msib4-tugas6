@@ -112,7 +112,7 @@
                             <div class="item col-md-12 d-flex justify-content-center p-2">
                                 <div class="card my-2 shadow-sm p-4 card-hover">
                                     <a href="#!" class="img-wrap">
-                                        <img src="{{ $item->foto }}" class="card-img-top rounded"
+                                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top rounded"
                                             title="{{ $item->name }}" style="aspect-ratio: 1 / 1">
                                     </a>
                                     <div class="card-body p-0 pt-2">
@@ -123,19 +123,22 @@
                                         @if ($carts->contains('product_id', $item->id))
                                             {{-- button disable --}}
                                             <button type="submit"
-                                                class="btn cart-disable border px-2 mx-1 pt-2 float-end disabled">
+                                                class="btn cart-disable border px-2 mx-1 pt-2 float-end disabled"
+                                                title="Barang sudah ditambahkan">
                                                 <i class="fas fa-shopping-cart fa-lg px-1"></i>
                                             </button>
                                         @else
                                             {{-- button normal --}}
                                             <button type="submit"
-                                                class="btn btn-light border px-2 mx-1 pt-2 float-end icon-cart-hover">
+                                                class="btn btn-light border px-2 mx-1 pt-2 float-end icon-cart-hover"
+                                                title="Tambah ke Keranjang?">
                                                 <i class="fas fa-shopping-cart fa-lg px-1 text-secondary"></i>
                                             </button>
                                         @endif
 
-                                        <a href=""
-                                            class="btn btn-light border px-2 mx-1 pt-2 float-end icon-heart-hover">
+                                        <a href="#!"
+                                            class="btn btn-light border px-2 mx-1 pt-2 float-end icon-heart-hover"
+                                            title="Wishlist Barang?">
                                             <i class="fas fa-heart fa-lg px-1 text-secondary"></i>
                                         </a>
                                         {{-- Pengkondisian status product --}}
@@ -195,7 +198,7 @@
                             <div class="item col-md-12 d-flex justify-content-center p-2">
                                 <div class="card my-2 shadow-sm p-4 card-hover">
                                     <a href="#!" class="img-wrap">
-                                        <img src="{{ $item->foto }}" class="card-img-top rounded"
+                                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top rounded"
                                             title="{{ $item->name }}" style="aspect-ratio: 1 / 1">
                                     </a>
                                     <div class="card-body p-0 pt-2">
@@ -278,7 +281,7 @@
                             <div class="item col-md-12 d-flex justify-content-center p-2">
                                 <div class="card my-2 shadow-sm p-4 card-hover">
                                     <a href="#!" class="img-wrap">
-                                        <img src="{{ $item->foto }}" class="card-img-top rounded"
+                                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top rounded"
                                             title="{{ $item->name }}" style="aspect-ratio: 1 / 1">
                                     </a>
                                     <div class="card-body p-0 pt-2">
@@ -361,7 +364,7 @@
                             <div class="item col-md-12 d-flex justify-content-center p-2">
                                 <div class="card my-2 shadow-sm p-4 card-hover">
                                     <a href="#!" class="img-wrap">
-                                        <img src="{{ $item->foto }}" class="card-img-top rounded"
+                                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top rounded"
                                             title="{{ $item->name }}" style="aspect-ratio: 1 / 1">
                                     </a>
                                     <div class="card-body p-0 pt-2">
@@ -444,7 +447,7 @@
                             <div class="item col-md-12 d-flex justify-content-center p-2">
                                 <div class="card my-2 shadow-sm p-4 card-hover">
                                     <a href="#!" class="img-wrap">
-                                        <img src="{{ $item->foto }}" class="card-img-top rounded"
+                                        <img src="{{ Storage::url($item->foto) }}" class="card-img-top rounded"
                                             title="{{ $item->name }}" style="aspect-ratio: 1 / 1">
                                     </a>
                                     <div class="card-body p-0 pt-2">

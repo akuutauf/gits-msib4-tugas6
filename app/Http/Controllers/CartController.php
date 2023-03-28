@@ -17,7 +17,7 @@ class CartController extends Controller
     public function index()
     {
         $data = [
-            'carts' => Cart::all(),
+            'carts' => Cart::orderBy('created_at', 'desc')->get(),
             'product_ready' => Product::where('status', "Ready")->orWhere('status', "Pre-Order")->get(),
             'products' => DB::table('carts')->join('products', 'carts.product_id', '=', 'products.id')->select('products.*', 'carts.*')->orderBy('.carts.product_id', 'desc')->get(),
         ];

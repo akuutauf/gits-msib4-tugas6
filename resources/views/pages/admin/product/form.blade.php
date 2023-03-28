@@ -30,7 +30,7 @@
             </div>
             <!-- Card body -->
             <div class="card-body">
-                <form action="{{ $action }}" method="POST">
+                <form action="{{ $action }}" method="POST" enctype="multipart/form-data">
                     @method('put')
                     @csrf
 
@@ -69,17 +69,12 @@
                         </div>
 
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="foto">Link Photo</label>
-                                <input type="text" class="form-control @error('foto') is-invalid @enderror"
-                                    id="foto" placeholder="Tambahkan Link Foto" name="foto"
-                                    value="{{ $products->foto }}">
+                            <label class="form-control-label" for="foto">Photo</label>
+                            <div class="form-group custom-file">
+                                <input type="file" class="form controll custom-file-input" id="foto" lang="en"
+                                    name="foto">
+                                <label class="custom-file-label" for="foto">Ubah Gambar</label>
                             </div>
-                            @if ($errors->has('foto'))
-                                <div class="invalid feedback text-danger mb-3">
-                                    *field foto harus di isi
-                                </div>
-                            @endif
                         </div>
 
                         <div class="col-md-6">

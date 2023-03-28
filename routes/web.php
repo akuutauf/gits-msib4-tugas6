@@ -42,3 +42,13 @@ Route::get('/cart-index', [CartController::class, 'index'])->name('index.cart');
 Route::post('/cart/product-store/{id}', [CartController::class, 'store'])->name('store.cart');
 Route::put('/cart/product-update/{id}', [CartController::class, 'update'])->name('update.cart');
 Route::get('/cart/product-delete/{id}', [CartController::class, 'destroy'])->name('delete.cart');
+
+// log :
+// 04.35 - 04.45 - Initial project
+// 06.00 - 7.45 - menambahkan fitur upload gambar untuk product
+
+
+// log update :
+// - authentication
+// - upload files
+// - readme
