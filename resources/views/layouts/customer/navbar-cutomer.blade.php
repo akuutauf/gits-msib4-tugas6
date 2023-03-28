@@ -24,11 +24,20 @@
                             <i class="fas fa-shopping-cart m-1 me-md-2"></i>
                             <p class="d-none d-md-block mb-0">Keranjang Ku</p>
                         </a>
-                        <a href="{{ route('admin.page') }}"
-                            class="btn-theme py-1 px-3 nav-link d-flex align-items-center">
-                            <i class="fas fa-user-alt m-1 me-md-2"></i>
-                            <p class="d-none d-md-block mb-0">Admin</p>
-                        </a>
+                        @if (auth()->user() != null)
+                            <a href="{{ route('admin.page') }}"
+                                class="btn-theme py-1 px-3 nav-link d-flex align-items-center">
+                                <i class="fas fa-user-alt m-1 me-md-2"></i>
+                                <p class="d-none d-md-block mb-0">{{ Auth::user()->name }}</p>
+                            </a>
+                        @else
+                            <a href="{{ route('login.page') }}"
+                                class="btn-theme py-1 px-3 nav-link d-flex align-items-center">
+                                <i class="fas fa-user-alt m-1 me-md-2"></i>
+                                <p class="d-none d-md-block mb-0">Login</p>
+                            </a>
+                        @endif
+
                     </div>
                 </div>
                 <!-- Center elements -->

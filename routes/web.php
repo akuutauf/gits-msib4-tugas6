@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PagesController;
@@ -17,25 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route Pages
+// Route Pages Beranda
 Route::get('/', [PagesController::class, 'home'])->name('home.page');
-Route::get('/admin-panel', [PagesController::class, 'admin'])->name('admin.page');
-
-// Product Routes
-Route::get('/product-index', [ProductController::class, 'index'])->name('index.product');
-Route::get('/product/add', [ProductController::class, 'create'])->name('create.product');
-Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
-Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('edit.product');
-Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('update.product');
-Route::get('/product/{id}/delete', [ProductController::class, 'destroy'])->name('delete.product');
-
-// Category Routes
-Route::get('/category-index', [CategoryController::class, 'index'])->name('index.category');
-Route::get('/category/add', [CategoryController::class, 'create'])->name('create.category');
-Route::post('/category/store', [CategoryController::class, 'store'])->name('store.category');
-Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('edit.category');
-Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('update.category');
-Route::get('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('delete.category');
 
 // Cart Routes
 Route::get('/cart-index', [CartController::class, 'index'])->name('index.cart');
@@ -43,12 +27,38 @@ Route::post('/cart/product-store/{id}', [CartController::class, 'store'])->name(
 Route::put('/cart/product-update/{id}', [CartController::class, 'update'])->name('update.cart');
 Route::get('/cart/product-delete/{id}', [CartController::class, 'destroy'])->name('delete.cart');
 
-// log :
-// 04.35 - 04.45 - Initial project
-// 06.00 - 7.45 - menambahkan fitur upload gambar untuk product
+// route untuk halaman register dan login (jika user sudah login maka tidak diperbolehkan mengakses login dan register page)
+Route::middleware(['guest'])->group(function () {
+    // Route Auth
+    Route::get('/register', [AuthController::class, "register"])->name('register.page');
+    Route::get('/login', [AuthController::class, "login"])->name('login.page');
 
+    // Route Action Auth
+    Route::post('/register', [AuthController::class, "doRegister"])->name('do.register');
+    Route::post('/login', [AuthController::class, "doLogin"])->name('do.login');
+});
 
-// log update :
-// - authentication
-// - upload files
-// - readme
+// route view untuk admin
+Route::middleware(['auth'])->group(function () {
+    // dashboard admin
+    Route::get('/admin-panel', [PagesController::class, 'admin'])->name('admin.page');
+
+    // route action logout hanya tersedia untuk admin
+    Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');
+
+    // Product Routes
+    Route::get('/product-index', [ProductController::class, 'index'])->name('index.product');
+    Route::get('/product/add', [ProductController::class, 'create'])->name('create.product');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('store.product');
+    Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('edit.product');
+    Route::put('/product/{id}/update', [ProductController::class, 'update'])->name('update.product');
+    Route::get('/product/{id}/delete', [ProductController::class, 'destroy'])->name('delete.product');
+
+    // Category Routes
+    Route::get('/category-index', [CategoryController::class, 'index'])->name('index.category');
+    Route::get('/category/add', [CategoryController::class, 'create'])->name('create.category');
+    Route::post('/category/store', [CategoryController::class, 'store'])->name('store.category');
+    Route::get('/category/{id}/edit', [CategoryController::class, 'edit'])->name('edit.category');
+    Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('update.category');
+    Route::get('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('delete.category');
+});

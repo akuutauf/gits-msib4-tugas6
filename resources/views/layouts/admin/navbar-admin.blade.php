@@ -128,7 +128,7 @@
                         aria-haspopup="true" aria-expanded="false">
                         <div class="media align-items-center">
                             <div class="media-body mr-3 d-none d-lg-block">
-                                <span class="mb-0 text-sm  font-weight-bold">Admin</span>
+                                <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
                             </div>
                             <span class="avatar avatar-sm rounded-circle">
                                 <img alt="Image placeholder" src="{{ asset('images/admin-profile.png') }}">
@@ -156,7 +156,7 @@
                             <span>Support</span>
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a href="{{ route('home.page') }}" class="dropdown-item">
+                        <a href="{{ route('logout.page') }}" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Logout</span>
                         </a>
