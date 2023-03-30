@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -68,7 +71,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // get data foto user
+        $data = User::findOrFail($id);
+
+        // fungsi validasi update product
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'photo' => 'mimes:jpg,jpeg,png,webp|max:10240',
+        ]);
+
+        // mengecek apakah field untuk upload foto sudah upload atau belum
+        if ($request->file('photo')) {
+            // hapus data foto sebelumnya terlbih dahulu
+            Storage::delete($data->photo);
+
+            // simpan foto yang baru
+            $saveData['photo'] = Storage::putFile('public/user', $request->file('photo'));
+        } else {
+            $saveData['photo'] = $data->photo;
+        }
+
+        // validasi field satu persatu sebelum melakukan update
+        User::where('id', $id)->update([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'photo' =>  $saveData['photo'],
+        ]);
+
+        return redirect()->route('index.user');
     }
 
     /**

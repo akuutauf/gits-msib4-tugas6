@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
 
     // User Routes
     Route::get('/user-index', [UserController::class, 'index'])->name('index.user');
+    Route::put('/user-update/{id}', [UserController::class, 'update'])->name('update.user');
 
     // Product Routes
     Route::get('/product-index', [ProductController::class, 'index'])->name('index.product');
@@ -66,3 +67,5 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/category/{id}/update', [CategoryController::class, 'update'])->name('update.category');
     Route::get('/category/{id}/delete', [CategoryController::class, 'destroy'])->name('delete.category');
 });
+
+// mengimplementasikan fungsi update data user (4.30 - 3.40)

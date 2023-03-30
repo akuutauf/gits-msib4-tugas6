@@ -27,6 +27,18 @@
 
 @section('content')
     <div class="container py-5">
+
+        {{-- check error validation --}}
+        {{-- @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif --}}
+
         <div class="card card-hover">
             <div class="card-body">
                 <div class="row justify-content-around">
@@ -45,18 +57,19 @@
                             </div>
                             <div class="pt-3 pb-4 mx-5">
 
-                                <form method="POST" action="" enctype="multipart/form-data">
+                                <form method="POST" action="{{ route('update.user', Auth::user()->id) }}"
+                                    enctype="multipart/form-data">
                                     @method('put')
                                     @csrf
 
-                                    <div class="input-group mb-3">
+                                    <div class="input-gropup mb-3">
                                         <input type="file" class="form-control" id="photo" name="photo">
                                     </div>
-                                </form>
+                                    {{-- </form> --}}
 
-                                <center>
-                                    <span>Last updated : {{ timestampConversion(Auth::user()->updated_at) }}</span>
-                                </center>
+                                    <center>
+                                        <span>Last updated : {{ timestampConversion(Auth::user()->updated_at) }}</span>
+                                    </center>
                             </div>
                         </div>
                     </div>
@@ -67,29 +80,42 @@
                                     User profile information
                                 </div>
 
-                                <form method="POST" action="">
+                                <form method="POST" action="{{ route('update.user', Auth::user()->id) }}"
+                                    enctype="multipart/form-data">
                                     @method('put')
                                     @csrf
 
                                     <div class="mb-3">
                                         <label for="name" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="name" name="name"
-                                            value="{{ Auth::user()->name }}">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            id="name" name="name" value="{{ Auth::user()->name }}">
+                                        @if ($errors->has('name'))
+                                            <div class="invalid feedback text-danger mb-3">
+                                                *field nama harus di isi
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="email" name="email"
-                                            value="{{ Auth::user()->email }}">
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" name="email" value="{{ Auth::user()->email }}">
+                                        @if ($errors->has('email'))
+                                            <div class="invalid feedback text-danger mb-3">
+                                                *field email harus di isi
+                                            </div>
+                                        @endif
                                     </div>
-                                    <div class="mb-3">
+
+                                    {{-- <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <input type="password" class="form-control" id="password" name="password">
                                     </div>
                                     <div class="mb-3">
                                         <label for="confirm" class="form-label">Confirm Password</label>
                                         <input type="password" class="form-control" id="confirm" name="confirm">
-                                    </div>
+                                    </div> --}}
 
+                                    <a href="{{ route('admin.page') }}" class="btn btn-theme-two">Batal</a>
                                     <button type="submit" class="btn btn-theme">Ubah Data</button>
                                 </form>
 

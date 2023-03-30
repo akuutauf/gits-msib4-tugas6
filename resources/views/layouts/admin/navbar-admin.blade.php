@@ -9,7 +9,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-search"></i></span>
                         </div>
-                        <input class="form-control" placeholder="Cari Sesuatu?" type="text">
+                        <input class="form-control" placeholder="Mau cari data produk apa?" type="text">
                     </div>
                 </div>
                 <button type="button" class="close" data-action="search-close" data-target="#navbar-search-main"
@@ -52,13 +52,18 @@
                                 <div class="row align-items-center">
                                     <div class="col-auto">
                                         <!-- Avatar -->
-                                        <img alt="Image placeholder" src="{{ asset('images/admin-profile.png') }}"
-                                            class="avatar rounded-circle">
+                                        @if (Auth::user()->photo == 'empty')
+                                            <img alt="Image placeholder" src="{{ asset('images/admin-profile.png') }}"
+                                                class="avatar rounded-circle">
+                                        @else
+                                            <img alt="Image placeholder" src="{{ Storage::url(Auth::user()->photo) }}"
+                                                class="avatar rounded-circle">
+                                        @endif
                                     </div>
                                     <div class="col ml--2">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <h4 class="mb-0 text-sm">Taufik Hidayat</h4>
+                                                <h4 class="mb-0 text-sm">{{ Auth::user()->name }}</h4>
                                             </div>
                                             <div class="text-right text-muted">
                                                 <small>1 mnt ago</small>
@@ -131,7 +136,11 @@
                                 <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->name }}</span>
                             </div>
                             <span class="avatar avatar-sm rounded-circle">
-                                <img alt="Image placeholder" src="{{ asset('images/admin-profile.png') }}">
+                                @if (Auth::user()->photo == 'empty')
+                                    <img alt="Image placeholder" src="{{ asset('images/admin-profile.png') }}">
+                                @else
+                                    <img alt="Image placeholder" src="{{ Storage::url(Auth::user()->photo) }}">
+                                @endif
                             </span>
                         </div>
                     </a>

@@ -165,11 +165,10 @@
 
                                         @if ($carts->contains('product_id', $item->id))
                                             {{-- button disable --}}
-                                            <button type="submit"
-                                                class="btn cart-disable border px-2 mx-1 pt-2 float-end disabled"
+                                            <a href="#!" class="btn cart-disable border px-2 mx-1 pt-2 float-end"
                                                 title="Barang sudah ditambahkan">
                                                 <i class="fas fa-shopping-cart fa-lg px-1"></i>
-                                            </button>
+                                            </a>
                                         @else
                                             {{-- button normal --}}
                                             <button type="submit"
