@@ -83,3 +83,13 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.rounded-circle-img {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+
+    border-radius: 50%;
+    overflow: hidden;
+}

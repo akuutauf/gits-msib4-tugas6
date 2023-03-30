@@ -75,6 +75,7 @@
                                                         name="quantity" value="{{ $item->quantity }}" min="1"
                                                         max="99">
                                                 </div>
+                                                {{-- </form> --}}
                                         </div>
                                     </div>
 

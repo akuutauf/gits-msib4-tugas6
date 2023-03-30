@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 // Route Pages Beranda
 Route::get('/', [PagesController::class, 'home'])->name('home.page');
+
+// route action logout hanya tersedia untuk admin
+Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');
 
 // Cart Routes
 Route::get('/cart-index', [CartController::class, 'index'])->name('index.cart');
@@ -43,8 +47,8 @@ Route::middleware(['auth'])->group(function () {
     // dashboard admin
     Route::get('/admin-panel', [PagesController::class, 'admin'])->name('admin.page');
 
-    // route action logout hanya tersedia untuk admin
-    Route::get('/logout', [AuthController::class, "logout"])->name('logout.page');
+    // User Routes
+    Route::get('/user-index', [UserController::class, 'index'])->name('index.user');
 
     // Product Routes
     Route::get('/product-index', [ProductController::class, 'index'])->name('index.product');
